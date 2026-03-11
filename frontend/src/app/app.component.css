@@ -125,6 +125,17 @@ button:disabled {
   background: #fff;
 }
 
+.task-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.task-check {
+  flex: 1;
+}
+
 .task-item h3 {
   font-size: 18px;
 }
@@ -143,6 +154,18 @@ button:disabled {
   color: #64748b;
 }
 
+.delete-button {
+  padding: 10px 14px;
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fecaca;
+  white-space: nowrap;
+}
+
+.delete-button:disabled {
+  cursor: wait;
+}
+
 @media (max-width: 640px) {
   .page-shell {
     padding: 18px 14px;
@@ -152,5 +175,9 @@ button:disabled {
   .task-list-panel {
     padding: 18px;
     border-radius: 20px;
+  }
+
+  .task-row {
+    flex-direction: column;
   }
 }

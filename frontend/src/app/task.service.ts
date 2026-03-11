@@ -20,4 +20,8 @@ export class TaskService {
   updateTask(id: number, payload: Partial<CreateTaskPayload>): Observable<Task> {
     return this.http.patch<Task>(`${this.apiUrl}${id}/`, payload);
   }
+
+  deleteTask(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}${id}/`);
+  }
 }

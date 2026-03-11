@@ -1,11 +1,8 @@
 <main class="page-shell">
   <section class="task-panel">
     <div class="panel-copy">
-      <p class="eyebrow">Angular Task Manager</p>
-      <h1>Capture tasks and update completion instantly.</h1>
-      <p class="subtitle">
-        This form is wired to your Django REST backend at <code>/api/tasks/</code>.
-      </p>
+      <p class="eyebrow">Task Manager</p>
+      <h1>Manage your Tasks Easily</h1>
     </div>
 
     <form class="task-form" (ngSubmit)="addTask()">
@@ -60,18 +57,29 @@
 
     <ul *ngIf="tasks.length > 0" class="task-list">
       <li *ngFor="let task of tasks; trackBy: trackByTaskId" class="task-item">
-        <label class="task-check">
-          <input
-            type="checkbox"
-            [checked]="task.completed"
-            (change)="toggleCompletion(task, $event)"
-          />
-          <div>
-            <h3 [class.done]="task.completed">{{ task.title }}</h3>
-            <p>{{ task.description || 'No description provided.' }}</p>
-            <small>{{ task.created_at | date: 'medium' }}</small>
-          </div>
-        </label>
+        <div class="task-row">
+          <label class="task-check">
+            <input
+              type="checkbox"
+              [checked]="task.completed"
+              (change)="toggleCompletion(task, $event)"
+            />
+            <div>
+              <h3 [class.done]="task.completed">{{ task.title }}</h3>
+              <p>{{ task.description || 'No description provided.' }}</p>
+              <small>{{ task.created_at | date: 'medium' }}</small>
+            </div>
+          </label>
+
+          <button
+            type="button"
+            class="delete-button"
+            [disabled]="isDeleting(task.id)"
+            (click)="deleteTask(task)"
+          >
+            {{ isDeleting(task.id) ? 'Deleting...' : 'Delete' }}
+          </button>
+        </div>
       </li>
     </ul>
   </section>

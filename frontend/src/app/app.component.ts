@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   tasks: Task[] = [];
   loading = false;
   submitting = false;
+  deletingTaskIds = new Set<number>();
   errorMessage = '';
 
   form: CreateTaskPayload = {
@@ -100,6 +101,26 @@ export class AppComponent implements OnInit {
         this.errorMessage = `Unable to update "${task.title}".`;
       },
     });
+  }
+
+  deleteTask(task: Task): void {
+    this.deletingTaskIds.add(task.id);
+    this.errorMessage = '';
+
+    this.taskService.deleteTask(task.id).subscribe({
+      next: () => {
+        this.tasks = this.tasks.filter((item) => item.id !== task.id);
+        this.deletingTaskIds.delete(task.id);
+      },
+      error: () => {
+        this.deletingTaskIds.delete(task.id);
+        this.errorMessage = `Unable to delete "${task.title}".`;
+      },
+    });
+  }
+
+  isDeleting(taskId: number): boolean {
+    return this.deletingTaskIds.has(taskId);
   }
 
   trackByTaskId(_: number, task: Task): number {
