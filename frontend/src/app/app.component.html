@@ -1,0 +1,78 @@
+<main class="page-shell">
+  <section class="task-panel">
+    <div class="panel-copy">
+      <p class="eyebrow">Angular Task Manager</p>
+      <h1>Capture tasks and update completion instantly.</h1>
+      <p class="subtitle">
+        This form is wired to your Django REST backend at <code>/api/tasks/</code>.
+      </p>
+    </div>
+
+    <form class="task-form" (ngSubmit)="addTask()">
+      <label class="field">
+        <span>Task title</span>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="form.title"
+          placeholder="Enter the task title"
+          required
+        />
+      </label>
+
+      <label class="field">
+        <span>Description</span>
+        <textarea
+          name="description"
+          [(ngModel)]="form.description"
+          rows="4"
+          placeholder="Write the task details"
+        ></textarea>
+      </label>
+
+      <label class="checkbox-row">
+        <input
+          type="checkbox"
+          name="completed"
+          [(ngModel)]="form.completed"
+        />
+        <span>Mark as completed</span>
+      </label>
+
+      <button type="submit" [disabled]="submitting">
+        {{ submitting ? 'Adding...' : 'Add Task' }}
+      </button>
+    </form>
+
+    <p *ngIf="errorMessage" class="status error">{{ errorMessage }}</p>
+    <p *ngIf="loading" class="status">Loading tasks...</p>
+  </section>
+
+  <section class="task-list-panel">
+    <div class="list-header">
+      <h2>Current tasks</h2>
+      <span>{{ tasks.length }} total</span>
+    </div>
+
+    <div *ngIf="!loading && tasks.length === 0" class="empty-state">
+      No tasks yet. Add one with the form.
+    </div>
+
+    <ul *ngIf="tasks.length > 0" class="task-list">
+      <li *ngFor="let task of tasks; trackBy: trackByTaskId" class="task-item">
+        <label class="task-check">
+          <input
+            type="checkbox"
+            [checked]="task.completed"
+            (change)="toggleCompletion(task, $event)"
+          />
+          <div>
+            <h3 [class.done]="task.completed">{{ task.title }}</h3>
+            <p>{{ task.description || 'No description provided.' }}</p>
+            <small>{{ task.created_at | date: 'medium' }}</small>
+          </div>
+        </label>
+      </li>
+    </ul>
+  </section>
+</main>
