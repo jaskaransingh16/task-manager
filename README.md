@@ -31,32 +31,12 @@ The application allows users to **create, update, delete, and track tasks**, inc
 
 ---
 
-# Project Structure
-
-```
-task-manager/
-│
-├── backend/
-│   ├── taskmanager/
-│   ├── tasks/
-│   └── manage.py
-│
-├── frontend/
-│   ├── src/
-│   ├── angular.json
-│   └── package.json
-│
-└── README.md
-```
-
----
-
 # Backend Setup (Django + DRF)
 
 ## 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/task-manager.git
+git clone https://github.com/jaskaransingh16/task-manager.git
 cd task-manager/backend
 ```
 
