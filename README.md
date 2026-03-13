@@ -48,23 +48,25 @@ The application allows users to **create, update, delete, and track tasks** with
 ---
 
 ## 2. Install dependencies
-pip install django djangorestframework
 ---
+pip install django djangorestframework
 
 ## 3. Run migrations
-python manage.py migrate
 ---
+python manage.py migrate
 
 ## 4. Run backend server
-python manage.py runserver
 ---
+python manage.py runserver
 
-### 5. Backend will run at
+## 5. Backend will run at
+---
 http://127.0.0.1:8000
 
 ## For the FrontEnd :
+---
 In the Terminal Just go the frontend directory and just run the front end using these commands 
 cd frontend
 npm install
----
+
 
