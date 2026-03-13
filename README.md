@@ -1,16 +1,10 @@
 # Task Manager (Full Stack Application)
 
-A simple **Task Manager application** built with:
+A simple **Task Manager application** built using **Angular (Frontend)** and **Django + Django REST Framework (Backend)**.
 
-- **Frontend:** Angular
-- **Backend:** Django + Django REST Framework
-
-The application allows users to **create, update, delete, and track tasks** with a completion checkbox.
+The application allows users to **create, update, delete, and track tasks**, including marking tasks as completed.
 
 ---
-
-# UI Preview
-![Task List](task_manager.png)
 
 # Features
 
@@ -19,7 +13,7 @@ The application allows users to **create, update, delete, and track tasks** with
 - Delete tasks
 - Mark tasks as completed
 - RESTful API backend
-- Angular frontend consuming Django API
+- Angular frontend integrated with Django API
 
 ---
 
@@ -39,34 +33,118 @@ The application allows users to **create, update, delete, and track tasks** with
 
 # Project Structure
 
+```
+task-manager/
+│
+├── backend/
+│   ├── taskmanager/
+│   ├── tasks/
+│   └── manage.py
+│
+├── frontend/
+│   ├── src/
+│   ├── angular.json
+│   └── package.json
+│
+└── README.md
+```
+
 ---
 
 # Backend Setup (Django + DRF)
 
 ## 1. Clone the repository
 
+```bash
+git clone https://github.com/your-username/task-manager.git
+cd task-manager/backend
+```
+
 ---
 
 ## 2. Install dependencies
----
+
+```bash
 pip install django djangorestframework
+```
+
+---
 
 ## 3. Run migrations
----
+
+```bash
 python manage.py migrate
+```
 
-## 4. Run backend server
 ---
+
+## 4. Run the backend server
+
+```bash
 python manage.py runserver
+```
 
-## 5. Backend will run at
 ---
+
+## Backend server will run at
+
+```
 http://127.0.0.1:8000
+```
 
-## For the FrontEnd :
 ---
-In the Terminal Just go the frontend directory and just run the front end using these commands 
+
+# Frontend Setup (Angular)
+
+Open a new terminal and navigate to the frontend directory.
+
+## 1. Go to frontend folder
+
+```bash
 cd frontend
+```
+
+---
+
+## 2. Install dependencies
+
+```bash
 npm install
+```
 
+---
 
+## 3. Run the Angular application
+
+```bash
+ng serve
+```
+
+---
+
+## Frontend will run at
+
+```
+http://localhost:4200
+```
+
+---
+
+# API Endpoints
+
+| Method | Endpoint | Description |
+|------|------|------|
+| GET | `/tasks/` | Retrieve all tasks |
+| POST | `/tasks/` | Create a new task |
+| PUT | `/tasks/{id}/` | Update a task |
+| DELETE | `/tasks/{id}/` | Delete a task |
+
+---
+
+# Future Improvements
+
+- User authentication
+- Task categories
+- Task deadlines
+- Improved UI/UX
+- Deployment using Docker or cloud platforms
